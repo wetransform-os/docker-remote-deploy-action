@@ -1,5 +1,5 @@
 #!/bin/sh
-set -eux
+set -eu
 
 if [ -z "$INPUT_REMOTE_HOST" ]; then
     echo "Input remote_host is required!"
