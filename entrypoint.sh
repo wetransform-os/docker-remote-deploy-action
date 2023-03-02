@@ -8,7 +8,6 @@ fi
 
 # Extra handling for SSH-based connections.
 if [ ${INPUT_REMOTE_HOST#"ssh://"} != "$INPUT_REMOTE_HOST" ]; then
-    echo "StrictHostKeyChecking no" >> /etc/ssh_config
 
     SSH_HOST=${INPUT_REMOTE_HOST#"ssh://"}
     SSH_HOST=${SSH_HOST#*@}
@@ -33,7 +32,7 @@ if [ ${INPUT_REMOTE_HOST#"ssh://"} != "$INPUT_REMOTE_HOST" ]; then
     ssh-add "$HOME/.ssh/docker"
 
     # Add public key to known hosts.
-    printf '%s %s\n' "$SSH_HOST" "$INPUT_SSH_PUBLIC_KEY" >> /etc/ssh/ssh_known_hosts
+    echo "$INPUT_SSH_PUBLIC_KEY" | tr -d '\r' >> /etc/ssh/ssh_known_hosts
 fi
 
 echo "Connecting to $INPUT_REMOTE_HOST..."
