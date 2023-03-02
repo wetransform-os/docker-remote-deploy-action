@@ -8,6 +8,8 @@ fi
 
 # Extra handling for SSH-based connections.
 if [ ${INPUT_REMOTE_HOST#"ssh://"} != "$INPUT_REMOTE_HOST" ]; then
+    echo "StrictHostKeyChecking no" >> /etc/ssh_config
+
     SSH_HOST=${INPUT_REMOTE_HOST#"ssh://"}
     SSH_HOST=${SSH_HOST#*@}
 
