@@ -11,6 +11,9 @@ inputs:
   ssh_private_key:
     description: SSH private key to use to connect
     required: false
+  env:
+    description: set environment variables to pass to the docker command
+    required: false
 runs:
   using: docker
   image: Dockerfile
