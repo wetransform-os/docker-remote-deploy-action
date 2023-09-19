@@ -20,6 +20,15 @@ inputs:
   docker_password:
     description: Password on the container registry
     required: false
+  docker_registry_2:
+    description: Log into a container registry (ghrc.io, dockerhub...)
+    required: false
+  docker_username_2:
+    description: Username on the container registry
+    required: false
+  docker_password_2:
+    description: Password on the container registry
+    required: false
   env:
     description: set environment variables to pass to the docker command
     required: false

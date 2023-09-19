@@ -10,6 +10,10 @@ if [ $INPUT_DOCKER_REGISTRY ] && [ $INPUT_DOCKER_USERNAME ] && [ $INPUT_DOCKER_P
     echo $INPUT_DOCKER_PASSWORD | docker login $INPUT_DOCKER_REGISTRY -u $INPUT_DOCKER_USERNAME --password-stdin
 fi
 
+if [ $INPUT_DOCKER_REGISTRY_2 ] && [ $INPUT_DOCKER_USERNAME_2 ] && [ $INPUT_DOCKER_PASSWORD_2 ]; then
+    echo $INPUT_DOCKER_PASSWORD_2 | docker login $INPUT_DOCKER_REGISTRY_2 -u $INPUT_DOCKER_USERNAME_2 --password-stdin
+fi
+
 # Extra handling for SSH-based connections.
 if [ ${INPUT_REMOTE_HOST#"ssh://"} != "$INPUT_REMOTE_HOST" ]; then
 
@@ -45,4 +49,8 @@ docker --log-level debug --host "$INPUT_REMOTE_HOST" "$@" 2>&1
 
 if [ $INPUT_DOCKER_REGISTRY ]; then
     docker logout $INPUT_DOCKER_REGISTRY
+fi
+
+if [ $INPUT_DOCKER_REGISTRY_2 ]; then
+    docker logout $INPUT_DOCKER_REGISTRY_2
 fi
